@@ -32,19 +32,30 @@ const randomColor = () => {
 
 for (let i = 0; i < Number(a); i++) {
   const color = randomColor();
+  console.log(color);
 
   list.innerHTML += `<li style="color: ${color}">${color} <div> 
-  <button class="btn" >Apply</button>
-  <button class="btn" >Delete</button>
+  <button class="btn" data-color="${color}">Apply</button>
+  <button class="btn">Delete</button>
   </div>  </li>`;
 }
 
 clearBtn.addEventListener("click", () => (list.textContent = " "));
+
 document.addEventListener("click", (e) => {
   if (e.target.textContent == "Delete") {
     e.target.parentElement.parentElement.remove();
-  } else if (e.target.textContent == "Apply") {
-    const color = e.target.dataset.color;
-    document.body.style.backgroundColor = color;
   }
+});
+
+document.addEventListener("click", (e) => {
+  if (e.target.textContent == "Apply") {
+    const colorr = e.target.dataset.color;
+    document.body.style.backgroundColor = colorr;
+    console.log(colorr);
+  }
+});
+
+document.getElementById("refreshBtn").addEventListener("click", function () {
+  location.reload();
 });
